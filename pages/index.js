@@ -1,82 +1,138 @@
-import Head from 'next/head'
+import Head from "next/head";
+import Layout from "../components/Layout";
 
 export default function Home() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-2">
+    <div>
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <main className="flex flex-col items-center justify-center w-full flex-1 px-20 text-center">
-        <h1 className="text-6xl font-bold">
-          Welcome to{' '}
-          <a className="text-blue-600" href="https://nextjs.org">
-            Next.js!
-          </a>
-        </h1>
-
-        <p className="mt-3 text-2xl">
-          Get started by editing{' '}
-          <code className="p-3 font-mono text-lg bg-gray-100 rounded-md">
-            pages/index.js
-          </code>
-        </p>
-
-        <div className="flex flex-wrap items-center justify-around max-w-4xl mt-6 sm:w-full">
-          <a
-            href="https://nextjs.org/docs"
-            className="p-6 mt-6 text-left border w-96 rounded-xl hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Documentation &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Find in-depth information about Next.js features and API.
-            </p>
-          </a>
-
-          <a
-            href="https://nextjs.org/learn"
-            className="p-6 mt-6 text-left border w-96 rounded-xl hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Learn &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Learn about Next.js in an interactive course with quizzes!
-            </p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className="p-6 mt-6 text-left border w-96 rounded-xl hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Examples &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Discover and deploy boilerplate example Next.js projects.
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className="p-6 mt-6 text-left border w-96 rounded-xl hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Deploy &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer className="flex items-center justify-center w-full h-24 border-t">
-        <a
-          className="flex items-center justify-center"
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className="h-4 ml-2" />
-        </a>
-      </footer>
+      <Layout>
+        <main className="flex flex-col items-center justify-center w-full flex-1">
+          <Hero />
+        </main>
+      </Layout>
     </div>
-  )
+  );
+}
+
+function Hero(params) {
+  return (
+    <section className="text-gray-600 body-font">
+      <div className="container px-5 py-24 mx-auto">
+        <div className="flex flex-col text-center w-full mb-20">
+          <h2 className="text-xs text-indigo-500 tracking-widest font-medium title-font mb-1">
+            ROOF PARTY POLAROID
+          </h2>
+          <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">
+            Master Cleanse Reliac Heirloom
+          </h1>
+          <p className="lg:w-2/3 mx-auto leading-relaxed text-base">
+            Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical
+            gentrify, subway tile poke farm-to-table. Franzen you probably
+            haven't heard of them man bun deep jianbing selfies heirloom prism
+            food truck ugh squid celiac humblebrag.
+          </p>
+        </div>
+        <div className="flex flex-wrap justify-between">
+          <div className="xl:w-1/4 lg:w-1/2 md:w-full px-8 py-6 border-2 rounded-lg border-gray-200 border-opacity-60">
+            <h2 className="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2">
+              Shooting Stars
+            </h2>
+            <p className="leading-relaxed text-base mb-4">
+              Fingerstache flexitarian street art 8-bit waistcoat. Distillery
+              hexagon disrupt edison bulbche.
+            </p>
+            <a className="text-indigo-500 inline-flex items-center">
+              Learn More
+              <svg
+                fill="none"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                className="w-4 h-4 ml-2"
+                viewBox="0 0 24 24"
+              >
+                <path d="M5 12h14M12 5l7 7-7 7"></path>
+              </svg>
+            </a>
+          </div>
+          <div className="xl:w-1/4 lg:w-1/2 md:w-full px-8 py-6 border-2 rounded-lg border-gray-200 border-opacity-60">
+            <h2 className="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2">
+              The Catalyzer
+            </h2>
+            <p className="leading-relaxed text-base mb-4">
+              Fingerstache flexitarian street art 8-bit waistcoat. Distillery
+              hexagon disrupt edison bulbche.
+            </p>
+            <a className="text-indigo-500 inline-flex items-center">
+              Learn More
+              <svg
+                fill="none"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                className="w-4 h-4 ml-2"
+                viewBox="0 0 24 24"
+              >
+                <path d="M5 12h14M12 5l7 7-7 7"></path>
+              </svg>
+            </a>
+          </div>
+          <div className="xl:w-1/4 lg:w-1/2 md:w-full px-8 py-6 border-2 rounded-lg border-gray-200 border-opacity-60">
+            <h2 className="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2">
+              Neptune
+            </h2>
+            <p className="leading-relaxed text-base mb-4">
+              Fingerstache flexitarian street art 8-bit waistcoat. Distillery
+              hexagon disrupt edison bulbche.
+            </p>
+            <a className="text-indigo-500 inline-flex items-center">
+              Learn More
+              <svg
+                fill="none"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                className="w-4 h-4 ml-2"
+                viewBox="0 0 24 24"
+              >
+                <path d="M5 12h14M12 5l7 7-7 7"></path>
+              </svg>
+            </a>
+          </div>
+          <div className="xl:w-1/4 lg:w-1/2 md:w-full px-8 py-6 border-2 rounded-lg border-gray-200 border-opacity-60">
+            <h2 className="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2">
+              Melanchole
+            </h2>
+            <p className="leading-relaxed text-base mb-4">
+              Fingerstache flexitarian street art 8-bit waistcoat. Distillery
+              hexagon disrupt edison bulbche.
+            </p>
+            <a className="text-indigo-500 inline-flex items-center">
+              Learn More
+              <svg
+                fill="none"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                className="w-4 h-4 ml-2"
+                viewBox="0 0 24 24"
+              >
+                <path d="M5 12h14M12 5l7 7-7 7"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+        <button className="flex mx-auto mt-16 text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">
+          Button
+        </button>
+      </div>
+    </section>
+  );
 }
