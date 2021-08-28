@@ -18,10 +18,11 @@ const fetchAllCourses = async (swrId) => {
 const fetchAllClasses = (url) => fetch(url).then((r) => r.json());
 
 export default function Courses(params) {
-  const { enqueueSnackbar } = useSnackbar();
-  let { data: courses } = useSWR("courses", fetchAllCourses);
   const [value, setValue] = React.useState(null);
+  const { enqueueSnackbar } = useSnackbar();
   const { user } = useUser();
+
+  let { data: courses } = useSWR("courses", fetchAllCourses);
   const { data: classes } = useSWR(
     () => "/api/classes/" + value?.course_code,
     fetchAllClasses
@@ -35,8 +36,11 @@ export default function Courses(params) {
       },
       body: JSON.stringify(courseData),
     })
-      .then((res) => console.log(res.body))
-      .catch((err) => console.log(err));
+      .then((res) => enqueueSnackbar("Course Added", { variant: "success" }))
+      .catch((err) => {
+        console.log(err);
+        enqueueSnackbar("Course Clashed", { variant: "error" });
+      });
   };
 
   function Card({ props }) {

@@ -1,15 +1,11 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { supabase } from "../../../supabase";
+import { getClasses } from "../../../supabase/functions";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   // Processing GET requests
   if (req.method === "GET") {
     const { courseCode } = req.query;
-    let { data, error } = await supabase
-      .from("class")
-      .select("*")
-      .eq("course_id", courseCode);
-
+    const data = await getClasses(courseCode);
     res.status(200).json({ data });
     return;
   }
