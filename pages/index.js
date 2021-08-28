@@ -1,14 +1,9 @@
-import Head from "next/head";
 import Layout from "../components/Layout";
 import { useUser } from "../supabase/authentication";
 
 export default function Home() {
   return (
     <div>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
       <Layout>
         <main className="flex flex-col items-center justify-center w-full flex-1">
           <Hero />
@@ -20,6 +15,7 @@ export default function Home() {
 
 function Hero(params) {
   const { user } = useUser();
+
   return (
     <section className="text-gray-600 body-font">
       <div className="container px-5 py-24 mx-auto">

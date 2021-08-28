@@ -1,50 +1,45 @@
 import { useState } from "react";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import { supabase } from "../supabase";
 import { useForm } from "react-hook-form";
 import { AwesomeButton } from "react-awesome-button";
+import { useSnackbar } from "notistack";
 
 export default function Register(params) {
   const [isLogin, setLogin] = useState(true);
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
+  const { enqueueSnackbar } = useSnackbar();
   const router = useRouter();
 
   // Signup the student
   const SignupUser = async (params) => {
-    console.log("signup", params);
-    let { user, error } = await supabase.auth.signUp({
-      email: params.email,
-      password: params.password,
+    const res = await fetch("/api/student", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(params),
     });
-    if (error) {
-      alert(error.message);
-    } else {
-      const { data, insError } = await supabase
-        .from("student")
-        .insert([
-          {
-            student_id: user.id,
-            roll_number: params.roll,
-            student_name: params.name,
-          },
-        ]);
-      if (insError) alert(error.message);
+    if (res.ok) {
+      enqueueSnackbar("Registration Successful!", { variant: "success" });
       router.push("/");
+    } else {
+      enqueueSnackbar("Registration Failed!", { variant: "warning" });
+      reset();
     }
   };
 
   // Login the student
   const LoginUser = async (params) => {
-    console.log("login", params);
     let { user, error } = await supabase.auth.signIn({
       email: params.email,
       password: params.password,
     });
     if (error) {
-      alert(error.message);
+      console.log(error.message);
+      enqueueSnackbar("Unable to login!", { variant: "warning" });
     } else {
-      console.log(user);
+      enqueueSnackbar("Login Successful!", { variant: "success" });
       router.push("/");
     }
   };
