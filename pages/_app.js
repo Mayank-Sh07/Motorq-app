@@ -1,7 +1,15 @@
-import 'tailwindcss/tailwind.css'
+import { supabase } from "../supabase";
+import { UserContextProvider } from "../supabase/authentication";
+import "tailwindcss/tailwind.css";
+import "react-awesome-button/dist/styles.css";
+import "../styles/globals.css";
 
-function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+function App({ Component, pageProps }) {
+  return (
+    <UserContextProvider supabaseClient={supabase}>
+      <Component {...pageProps} />
+    </UserContextProvider>
+  );
 }
 
-export default MyApp
+export default App;

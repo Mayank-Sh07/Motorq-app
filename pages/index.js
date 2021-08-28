@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Layout from "../components/Layout";
+import { useUser } from "../supabase/authentication";
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
 }
 
 function Hero(params) {
+  const { user } = useUser();
   return (
     <section className="text-gray-600 body-font">
       <div className="container px-5 py-24 mx-auto">
