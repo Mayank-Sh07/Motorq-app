@@ -7,8 +7,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     const { classId, studentId } = req.query;
     const student = await getStudentData(studentId);
     const index = student.classes.indexOf(parseInt(String(classId)));
-    if (index > -1) {
-      student.classes.splice(index, 1);
+    if (index > -1 && student.classes.length > 0) {
+      student.classes?.splice(index, 1);
       if (student.classes.length == 0) student.classes = null;
       updateClasses(student.classes, studentId);
       res.status(200).end();

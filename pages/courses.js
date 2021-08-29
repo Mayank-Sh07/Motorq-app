@@ -6,6 +6,8 @@ import { supabase } from "../supabase";
 import { useUser } from "../supabase/authentication";
 import { useSnackbar } from "notistack";
 import useSWR from "swr";
+import Loader from "../components/Loader";
+import Link from "next/link";
 
 const fetchAllCourses = async (swrId) => {
   let { data: course, error } = await supabase.from("course").select("*");
@@ -41,6 +43,25 @@ export default function Courses(params) {
     });
   };
 
+  const dateString = (params) => {
+    const weekdays = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
+    let date = new Date(params);
+    let day = date.getDay();
+    let time = date.toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+    return "Every " + weekdays[day] + ", " + time;
+  };
+
   function Card({ props }) {
     return (
       <div className="py-4 px-2 lg:w-1/2">
@@ -52,13 +73,28 @@ export default function Courses(params) {
             {value?.course_name}
           </h1>
           <p className="mb-2 text-base font-medium">{props.faculty_name}</p>
-          <p className="mb-8">Friday 12:00 AM</p>
+          <p className="mb-8">{dateString(props.class_timing)}</p>
           <button
             onClick={() => addCourse({ ...props })}
             class="inline-flex justify-center ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded"
           >
             Add Course
           </button>
+        </div>
+      </div>
+    );
+  }
+
+  if (!user || !classes || !courses) {
+    return (
+      <div className="flex flex-col w-full h-screen items-center justify-center bg-gray-200">
+        <Loader />
+        <div className="mt-12">
+          <Link href="/">
+            <span className="text-indigo-400 hover:text-indigo-500 hover:underline cursor-pointer transition ease-in duration-300">
+              Back to home page
+            </span>
+          </Link>
         </div>
       </div>
     );

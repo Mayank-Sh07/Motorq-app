@@ -1,11 +1,24 @@
 import { supabase } from "./index";
 
 export async function getStudentData(studentId) {
+  if (!studentId) return;
   let { data: studentArr } = await supabase
     .from("student")
     .select("*")
     .eq("student_id", studentId);
-  return studentArr[0];
+  if (studentArr == null) {
+    return undefined;
+  } else return studentArr[0];
+}
+
+export async function getStudentDataByRoll(rollNumber) {
+  let { data: studentArr } = await supabase
+    .from("student")
+    .select("*")
+    .eq("roll_number", rollNumber);
+  if (studentArr == null) {
+    return undefined;
+  } else return studentArr[0];
 }
 
 export async function updateClasses(newClassArray, studentId) {
@@ -18,6 +31,7 @@ export async function updateClasses(newClassArray, studentId) {
 }
 
 export async function getStudentClasses(existingClasses) {
+  if (!existingClasses) return;
   const { data } = await supabase
     .from("class")
     .select("*,course(course_name)")

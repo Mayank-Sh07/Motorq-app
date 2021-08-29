@@ -1,14 +1,19 @@
 import type { NextApiRequest, NextApiResponse } from "next";
+import { getStudentDataByRoll } from "../../../supabase/functions";
 
-export default (req: NextApiRequest, res: NextApiResponse) => {
+export default async (req: NextApiRequest, res: NextApiResponse) => {
   // Processing GET requests
   if (req.method === "GET") {
     const { studentId } = req.query;
-    res.status(200).json({ name: `/student ${studentId} fetched` });
+    const data = await getStudentDataByRoll(studentId);
+    if (!!data) res.status(200).json({ data });
+    else res.status(400).end();
+    return;
   }
 
   // Handling other HTTP methods
   else {
-    res.status(400).json({ name: "Bad Request! Try GET request" });
+    res.status(400).end();
+    return;
   }
 };

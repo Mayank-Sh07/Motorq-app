@@ -9,7 +9,10 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   const { studentId } = req.query;
   // getting student data
   const student = await getStudentData(studentId);
-
+  if (student == undefined) {
+    res.status(400).end();
+    return;
+  }
   // Processing POST requests
   if (req.method === "POST") {
     const params = req.body;

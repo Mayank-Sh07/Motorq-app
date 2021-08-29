@@ -1,34 +1,18 @@
 import React from "react";
 import { Calendar as BigCalendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
-import Loader from "./Loader";
 import { RRule } from "rrule";
 
 const localizer = momentLocalizer(moment);
 
 export default function MyCalendar({ data }) {
-  let classes = [
-    {
-      title: "feature preview",
-      start: "2021/08/21",
-      end: "2021/08/22",
-      allDay: false,
-    },
-  ];
-  if (!data) {
-    return (
-      <div className="max-w-2xl m-auto h-96 mt-8 bg-gray-200 flex items-center justify-center">
-        <Loader />
-      </div>
-    );
-  }
-
+  let classes = [];
   Date.prototype.addHours = function (h) {
     this.setTime(this.getTime() + h * 60 * 60 * 1000);
     return this;
   };
 
-  if (data) {
+  if (!!data) {
     classes = [];
     data.forEach((clss) => {
       let frame = new RRule({
