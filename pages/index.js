@@ -1,13 +1,9 @@
-import Head from "next/head";
 import Layout from "../components/Layout";
+import { useUser } from "../supabase/authentication";
 
 export default function Home() {
   return (
     <div>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
       <Layout>
         <main className="flex flex-col items-center justify-center w-full flex-1">
           <Hero />
@@ -18,31 +14,35 @@ export default function Home() {
 }
 
 function Hero(params) {
+  const { user } = useUser();
+
   return (
     <section className="text-gray-600 body-font">
       <div className="container px-5 py-24 mx-auto">
         <div className="flex flex-col text-center w-full mb-20">
           <h2 className="text-xs text-indigo-500 tracking-widest font-medium title-font mb-1">
-            ROOF PARTY POLAROID
+            Learn and Outshine with Course++
           </h2>
           <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">
             Master Cleanse Reliac Heirloom
           </h1>
           <p className="lg:w-2/3 mx-auto leading-relaxed text-base">
-            Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical
-            gentrify, subway tile poke farm-to-table. Franzen you probably
-            haven't heard of them man bun deep jianbing selfies heirloom prism
-            food truck ugh squid celiac humblebrag.
+            The objective of Course++ is to ease the management system of
+            students by features like adding/dropping/viewing courses which will
+            help them to study any subject according to their will. Course++
+            also provides a time-table which will help the students to schedule
+            their day and prevent overlapping of slots. Students will also get
+            an option to locate their classes on the map in order to ease the
+            difficulty in navigating.
           </p>
         </div>
         <div className="flex flex-wrap justify-between">
           <div className="xl:w-1/4 lg:w-1/2 md:w-full px-8 py-6 border-2 rounded-lg border-gray-200 border-opacity-60">
             <h2 className="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2">
-              Shooting Stars
+              Feature Name
             </h2>
             <p className="leading-relaxed text-base mb-4">
-              Fingerstache flexitarian street art 8-bit waistcoat. Distillery
-              hexagon disrupt edison bulbche.
+              Feature description here
             </p>
             <a className="text-indigo-500 inline-flex items-center">
               Learn More
@@ -64,8 +64,7 @@ function Hero(params) {
               The Catalyzer
             </h2>
             <p className="leading-relaxed text-base mb-4">
-              Fingerstache flexitarian street art 8-bit waistcoat. Distillery
-              hexagon disrupt edison bulbche.
+              Feature description here
             </p>
             <a className="text-indigo-500 inline-flex items-center">
               Learn More
@@ -84,11 +83,10 @@ function Hero(params) {
           </div>
           <div className="xl:w-1/4 lg:w-1/2 md:w-full px-8 py-6 border-2 rounded-lg border-gray-200 border-opacity-60">
             <h2 className="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2">
-              Neptune
+              Feature Name
             </h2>
             <p className="leading-relaxed text-base mb-4">
-              Fingerstache flexitarian street art 8-bit waistcoat. Distillery
-              hexagon disrupt edison bulbche.
+              Feature description here
             </p>
             <a className="text-indigo-500 inline-flex items-center">
               Learn More
@@ -107,11 +105,10 @@ function Hero(params) {
           </div>
           <div className="xl:w-1/4 lg:w-1/2 md:w-full px-8 py-6 border-2 rounded-lg border-gray-200 border-opacity-60">
             <h2 className="text-lg sm:text-xl text-gray-900 font-medium title-font mb-2">
-              Melanchole
+              Feature Name
             </h2>
             <p className="leading-relaxed text-base mb-4">
-              Fingerstache flexitarian street art 8-bit waistcoat. Distillery
-              hexagon disrupt edison bulbche.
+              Feature description here
             </p>
             <a className="text-indigo-500 inline-flex items-center">
               Learn More

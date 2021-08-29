@@ -1,0 +1,27 @@
+https://nextjs.org/docs/basic-features/typescript
+
+// Motorq-app Tables @ https://dbdiagram.io/d
+Table student as S {
+  student_id uuid [pk]
+  student_name varchar
+  classes text[] [ref: > Cls.class_id]
+}
+
+Table course as C {
+  cousre_code int [pk]
+  course_name varchar
+ }
+
+Table class as Cls {
+  class_id int [pk]
+  course_id int [ref: > C.cousre_code]
+  faculty_name varchar
+  building varchar [ref: > B.building_name]
+  class_timing json
+ }
+
+Table building as B {
+  building_name varchar [pk,unique]
+  location json
+}
+
