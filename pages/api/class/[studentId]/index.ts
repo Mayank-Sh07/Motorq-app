@@ -3,6 +3,7 @@ import {
   getStudentData,
   updateClasses,
   getStudentClasses,
+  incrementStudent,
 } from "../../../../supabase/functions";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
@@ -21,6 +22,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       student.classes == null &&
       updateClasses([params.class_id], studentId)
     ) {
+      incrementStudent(params.class_id);
       res.status(200).end();
       return;
     }

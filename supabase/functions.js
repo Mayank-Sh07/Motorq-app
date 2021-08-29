@@ -47,3 +47,42 @@ export async function getClasses(courseCode) {
     .eq("course_id", courseCode);
   return data;
 }
+
+export async function getMapData(courseCode) {
+  let { data: mapData, error } = await supabase
+    .from("course")
+    .select(`class (*, building(*))`)
+    .eq("course_code", courseCode);
+  if (error) console.log(error.message);
+  else {
+    return mapData;
+  }
+}
+
+export async function decrementStudent(classId) {
+  let { data: num } = await supabase
+    .from("class")
+    .select("strength")
+    .eq("class_id", classId);
+
+  const { error } = await supabase
+    .from("class")
+    .update({ strength: num[0].strength - 1 });
+  if (error) {
+    console.log(error.message);
+  }
+}
+
+export async function incrementStudent(classId) {
+  let { data: num } = await supabase
+    .from("class")
+    .select("strength")
+    .eq("class_id", classId);
+
+  const { error } = await supabase
+    .from("class")
+    .update({ strength: num[0].strength + 1 });
+  if (error) {
+    console.log(error.message);
+  }
+}

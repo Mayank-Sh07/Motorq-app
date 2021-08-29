@@ -36,7 +36,7 @@ export default function Header(params) {
           <Link passHref href={!!user ? "/timetable" : "/register"}>
             <a className="mr-5 hover:text-gray-900">Time Table</a>
           </Link>
-          <Link passHref href={!!user ? "/courses" : "/map"}>
+          <Link passHref href={!!user ? "/map" : "/register"}>
             <a className="mr-5 hover:text-gray-900">Map</a>
           </Link>
         </nav>

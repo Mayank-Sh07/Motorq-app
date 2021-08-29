@@ -1,5 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { getStudentData, updateClasses } from "../../../../supabase/functions";
+import {
+  getStudentData,
+  updateClasses,
+  decrementStudent,
+} from "../../../../supabase/functions";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   // Processing DELETE requests
@@ -11,6 +15,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       student.classes?.splice(index, 1);
       if (student.classes.length == 0) student.classes = null;
       updateClasses(student.classes, studentId);
+      decrementStudent(classId);
       res.status(200).end();
       return;
     } else {
