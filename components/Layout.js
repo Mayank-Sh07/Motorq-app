@@ -5,7 +5,7 @@ import Footer from "./Footer";
 export default function Layout({ children }) {
   return (
     <div>
-      <div className="container m-auto">
+      <div className="container m-auto min-h-screen">
         <Header />
         {children}
       </div>

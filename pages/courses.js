@@ -35,12 +35,10 @@ export default function Courses(params) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(courseData),
-    })
-      .then((res) => enqueueSnackbar("Course Added", { variant: "success" }))
-      .catch((err) => {
-        console.log(err);
-        enqueueSnackbar("Course Clashed", { variant: "error" });
-      });
+    }).then((res) => {
+      if (res.ok) enqueueSnackbar("Course Added", { variant: "success" });
+      else enqueueSnackbar("Course Clashed", { variant: "error" });
+    });
   };
 
   function Card({ props }) {

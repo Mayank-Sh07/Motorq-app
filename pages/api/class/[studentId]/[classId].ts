@@ -1,14 +1,26 @@
 import type { NextApiRequest, NextApiResponse } from "next";
+import { getStudentData, updateClasses } from "../../../../supabase/functions";
 
-export default (req: NextApiRequest, res: NextApiResponse) => {
+export default async (req: NextApiRequest, res: NextApiResponse) => {
   // Processing DELETE requests
   if (req.method === "DELETE") {
     const { classId, studentId } = req.query;
-    res.status(200).json({ name: `${classId} class of ${studentId} deleted` });
+    const student = await getStudentData(studentId);
+    const index = student.classes.indexOf(parseInt(String(classId)));
+    if (index > -1) {
+      student.classes.splice(index, 1);
+      if (student.classes.length == 0) student.classes = null;
+      updateClasses(student.classes, studentId);
+      res.status(200).end();
+      return;
+    } else {
+      res.status(400).end();
+      return;
+    }
   }
 
   // Handling other HTTP methods
   else {
-    res.status(400).json({ name: "Bad Request! Try DELETE" });
+    res.status(400).end();
   }
 };

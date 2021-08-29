@@ -10,6 +10,7 @@ import { createTheme } from "@material-ui/core/styles";
 import "tailwindcss/tailwind.css";
 import "react-awesome-button/dist/styles.css";
 import "../styles/globals.css";
+import "react-big-calendar/lib/css/react-big-calendar.css";
 
 export default function MyApp(props) {
   const { Component, pageProps } = props;

@@ -20,7 +20,7 @@ export async function updateClasses(newClassArray, studentId) {
 export async function getStudentClasses(existingClasses) {
   const { data } = await supabase
     .from("class")
-    .select("*")
+    .select("*,course(course_name)")
     .in("class_id", existingClasses);
 
   return data;
