@@ -13,3 +13,7 @@ NEXT_PUBLIC_GOOGLE_MAP_KEY="" // Google Map API key
 - Endpoints become serverless Lambda function so less interdependancy
 - NO CORS policy, so API transctions are restricted to the domain
 - I have implemented Authentication
+
+
+Link to youtube video of project description: 
+https://youtu.be/j4hyxWCmGZ8
